@@ -50,10 +50,10 @@ fn ask_for_wildcards() -> usize {
 fn setup_board(wildcards: usize) -> Vec<char> {
     let emojis = vec!['😸', '🐶', '🐵', '🐻', '🐼', '🐰', '🐭', '🐯'];
 
-    let mut board: Vec<_> = emojis[1..wildcards]
+    let mut board: Vec<_> = emojis[0..wildcards]
         .iter()
         .cycle()
-        .take(emojis[1..wildcards].len() * 2)
+        .take(emojis[0..wildcards].len() * 2)
         .collect();
 
     board.shuffle(&mut thread_rng());
