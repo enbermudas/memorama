@@ -3,24 +3,6 @@ use rand::thread_rng;
 use std::io;
 use std::io::Write;
 
-fn main() {
-    let wildcards: usize = ask_for_wildcards();
-    let board = setup_board(wildcards);
-
-    // let board_width = board.len() / 2;
-    for (i, _cell) in board.iter().enumerate() {
-        if (i) % 4 == 0 {
-            print!("\n\n");
-        }
-
-        match i + 1 > 9 {
-            false => print!("  [0{}]  ", i + 1),
-            true => print!("  [{}]  ", i + 1),
-        }
-    }
-    print!("\n\n");
-}
-
 fn ask_for_wildcards() -> usize {
     let mut wildcards = String::new();
 
@@ -65,4 +47,33 @@ fn setup_board(wildcards: usize) -> Vec<char> {
     }
 
     shuffled_board
+}
+
+fn display_board(board: &Vec<char>) {
+    println!("");
+
+    for (i, _cell) in board.iter().enumerate() {
+        if (i) % 4 == 0 && i != 0 {
+            print!("\n\n");
+        }
+
+        match i + 1 > 9 {
+            false => print!("  [0{}]  ", i + 1),
+            true => print!("  [{}]  ", i + 1),
+        }
+    }
+
+    print!("\n\n");
+}
+
+fn start_game(board: Vec<char>) {
+    display_board(&board);
+    // Game logic here...
+}
+
+fn main() {
+    let wildcards: usize = ask_for_wildcards();
+    let board = setup_board(wildcards);
+
+    start_game(board);
 }
